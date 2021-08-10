@@ -1,0 +1,296 @@
+/* prettier-ignore */
+@mixin respond($breakpoint) {
+  // max-width
+  @if $breakpoint == tablet-landscape {
+    @media only screen and (max-width: 75em) {              // 1200px / 16 = 75em
+      @content;
+    }
+  }
+  @if $breakpoint == tablet-portrait {
+    @media only screen and (max-width: 56.25em) {           // 900px / 16 = 56.25em
+      @content;
+    }
+  }
+  @if $breakpoint == phone {
+    @media only screen and (max-width: 37.5em) {            // 600px / 16 = 37.5
+      @content;
+    }
+  }
+}
+
+%default-logo-icon {
+  font-size: 3rem;
+  position: relative;
+  z-index: 10;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@import "https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap";
+/* LAYOUT */
+/* ELEMENTS STYLE */
+html {
+  font-size: 62.5%; /*Reset para REMS - 62.5% = 10px de 16px | 1 rem = 10px  */
+  box-sizing: border-box; /*Aplicar correctamente box-sizing*/
+}
+*,
+*::before,
+*::after {
+  /*Aplicar correctamente box-sizing*/
+  box-sizing: inherit; /*Aplicar correctamente box-sizing*/
+}
+
+html {
+  // max-width
+  @include respond(tablet-landscape) {
+    font-size: 56.25%; // 1rem = 9px -> 9/16 * 100 = 56.25.
+  }
+  @include respond(tablet-portrait) {
+    font-size: 50%; // 1rem = 8px -> 8/16 * 100 = 50.
+  }
+}
+
+body {
+  font-family: "Press Start 2P", sans-serif;
+  color: #eee;
+  background-color: #222;
+}
+header {
+  position: relative;
+  height: 35vh;
+  border-bottom: 7px solid #eee;
+
+  @include respond(phone) {
+    height: unset;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+main {
+  height: 65vh;
+  color: #eee;
+  text-align: center;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include respond(phone) {
+    flex-direction: column;
+    gap: 2rem;
+  }
+}
+.left {
+  width: 52rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @include respond(phone) {
+    width: unset;
+    margin-top: 6rem;
+  }
+}
+.right {
+  width: 52rem;
+  font-size: 2rem;
+
+  @include respond(phone) {
+    width: unset;
+  }
+}
+h1 {
+  font-size: 4rem;
+  text-align: center;
+  position: absolute;
+  width: 100%;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  @include respond(phone) {
+    position: static;
+    transform: unset;
+    margin: 2rem 0 0 0;
+  }
+}
+.number {
+  background: #eee;
+  color: #333;
+  font-size: 6rem;
+  width: 15rem;
+  padding: 3rem 0rem;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%, 50%);
+
+  @include respond(phone) {
+    position: static;
+    transform: translateY(50%);
+  }
+}
+.between {
+  font-size: 1.4rem;
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+
+  @include respond(phone) {
+    position: static;
+  }
+}
+.again {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+
+  @include respond(phone) {
+    position: static;
+    margin-top: 2rem;
+  }
+}
+.guess {
+  background: none;
+  border: 4px solid #eee;
+  font-family: inherit;
+  color: inherit;
+  font-size: 5rem;
+  padding: 2.5rem;
+  width: 25rem;
+  text-align: center;
+  display: block;
+  margin-bottom: 3rem;
+
+  @include respond(phone) {
+    margin-top: 4rem;
+  }
+}
+.btn {
+  border: none;
+  background-color: #eee;
+  color: #222;
+  font-size: 2rem;
+  font-family: inherit;
+  padding: 2rem 3rem;
+  cursor: pointer;
+  &:hover {
+    background-color: #ccc;
+  }
+}
+.message {
+  margin-bottom: 8rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  color: #7ecaff;
+
+  @include respond(phone) {
+    margin-bottom: 4rem;
+  }
+}
+.label-score {
+  margin-bottom: 2rem;
+}
+
+footer {
+  text-align: center;
+  border-top: 6px dotted #eee;
+
+  .footer {
+    padding: 1rem 5%;
+
+    display: flex;
+    justify-content: space-between;
+    gap: 5rem;
+
+    @include respond(phone) {
+      display: block;
+      padding: 2rem 5%;
+    }
+
+    p {
+      font-size: 1rem;
+      font-weight: 400;
+      margin-bottom: 0;
+    }
+
+    &__info {
+      &-socials {
+        display: flex;
+        gap: 2.5rem;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 1rem;
+
+        span {
+          display: inline-block;
+          line-height: 0;
+          width: 2rem;
+          transition: all 0.18s;
+
+          @include respond(phone) {
+            width: 2rem;
+          }
+
+          &:hover {
+            transform: translateY(-4px);
+          }
+
+          img {
+            width: 100%;
+          }
+        }
+      }
+
+      &-msg {
+        .name {
+          display: inline-block;
+          background: linear-gradient(to right, rgb(0, 174, 255), #ffffff);
+
+          background-clip: text;
+          -webkit-background-clip: text;
+          color: rgba(0, 0, 0, 0.2);
+        }
+
+        a {
+          &:link,
+          &:visited {
+            text-decoration: none;
+
+            display: inline-block;
+            background: linear-gradient(to right, rgb(0, 255, 98), #ffffff);
+
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: rgba(0, 0, 0, 0.2);
+          }
+        }
+      }
+    }
+
+    &__copyright {
+      align-self: center;
+      margin-bottom: 0;
+      line-height: 1.8;
+
+      .name {
+        display: inline-block;
+        background: linear-gradient(to right, rgb(0, 174, 255), #ffffff);
+
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: rgba(0, 0, 0, 0.2);
+      }
+    }
+  }
+}

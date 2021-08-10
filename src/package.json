@@ -1,0 +1,24 @@
+{
+  "name": "guess-my-number-game",
+  "version": "1.0.0",
+  "description": "Guess my number game",
+  "homepage": "http://JorgeRodz.github.io/GuessMyNumberGame",
+  "scripts": {
+    "parcel:serve": "parcel serve ./index.html",
+    "parcel:build": "parcel build ./index.html",
+    "predeploy": "npm run parcel:build",
+    "deploy": "gh-pages -d dist"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@parcel/transformer-image": "^2.0.0-rc.0",
+    "@parcel/transformer-sass": "^2.0.0-beta.3.1",
+    "autoprefixer": "^10.2.6",
+    "parcel": "^2.0.0-beta.3.1"
+  },
+  "dependencies": {
+    "gh-pages": "^3.2.3"
+  }
+}
